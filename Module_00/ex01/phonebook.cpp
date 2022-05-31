@@ -50,6 +50,8 @@ void	PhoneBook::print_contact(Contact contact) {
 }
 
 void	PhoneBook::display_contacts() {
+	cout << "     Index First Name  Last Name   Nickname" << endl;
+	cout << "-------------------------------------------" << endl;
 	for (int i = 0; i < 8; i++) {
 		print_field(std::to_string(i));
 		cout << '|';
@@ -92,7 +94,10 @@ void	search_contact(PhoneBook pb) {
 
 	while (input.empty()) {
 		cout << "Index of contact to display: ";
-		getline(cin, input);
+		if (!getline(cin, input)) {
+			cout << endl;
+			return ;
+		}
 	}
 	if (input.find_first_not_of("0123456789") != string::npos) {
 		cout << "PhoneBook: invalid index: " << input << endl;
