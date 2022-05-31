@@ -1,6 +1,6 @@
-NAME	= megaphone
+NAME	= account
 
-SRC		= megaphone.cpp
+SRC		= tests.cpp Account.cpp
 
 CPP		= c++
 CFLAGS	= -Wall -Wextra -Werror
@@ -14,8 +14,8 @@ ${NAME}:
 clean:
 	${RM} ${NAME}
 
-fclean:	clean
+fclean: clean
 
-re:	fclean all
+re: fclean all
 
 .PHONY:	all clean fclean re

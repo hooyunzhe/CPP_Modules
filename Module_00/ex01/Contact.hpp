@@ -3,29 +3,18 @@
 
 # include <iostream>
 
+using std::string;
+
 class	Contact {
 	public:
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nick_name;
-		std::string	phone_number;
-		std::string	darkest_secret;
+		string	first_name;
+		string	last_name;
+		string	nick_name;
+		string	phone_number;
+		string	darkest_secret;
 
-		Contact() {
-			first_name = "";
-			last_name = "";
-			nick_name = "";
-			phone_number = "";
-			darkest_secret = "";
-		}
-
-		Contact(std::string f_n, std::string l_n, std::string n_n, std::string p_n, std::string d_s) {
-			first_name = f_n;
-			last_name = l_n;
-			nick_name = n_n;
-			phone_number = p_n;
-			darkest_secret = d_s;
-		}
+		Contact();
+		Contact(string f_n, string l_n, string n_n, string p_n, string d_s);
 };
 
 #endif

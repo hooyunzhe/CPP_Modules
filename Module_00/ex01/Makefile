@@ -1,6 +1,6 @@
-NAME	= megaphone
+NAME	= phonebook
 
-SRC		= megaphone.cpp
+SRC		= PhoneBook.cpp
 
 CPP		= c++
 CFLAGS	= -Wall -Wextra -Werror
@@ -18,4 +18,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all clean fclean re
