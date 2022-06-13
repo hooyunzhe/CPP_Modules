@@ -36,9 +36,13 @@ void	PhoneBook::print_field(string field) {
 	for (int i = field.length(); i < 10; i++) {
 		cout << ' ';
 	}
-	cout << field.substr(0, 9);
-	if (field.length() > 10)
+	if (field.length() > 10) {
+		cout << field.substr(0, 9);
 		cout << '.';
+	}
+	else {
+		cout << field;
+	}
 }
 
 void	PhoneBook::print_contact(Contact contact) {
