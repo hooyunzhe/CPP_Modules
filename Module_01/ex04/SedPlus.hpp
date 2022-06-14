@@ -16,9 +16,9 @@ class	SedPlus {
 		SedPlus();
 		~SedPlus();
 
-		int		checkInput(int argc, char **argv);
-		void	writePlus(ofstream &output_file, string oriString, string oldString, string newString);
-		void	sedPlus(string filename, string oldString, string newString);
+		int		checkInput(int argc, char **argv) const;
+		void	writePlus(ofstream &output_file, string oriString, string oldString, string newString) const;
+		void	sedPlus(string filename, string oldString, string newString) const;
 };
 
 #endif

@@ -2,17 +2,17 @@
 
 Zombie::Zombie() {};
 Zombie::~Zombie() {
-	cout << name << endl;
+	cout << this->_name << endl;
 };
 
-void	Zombie::annouce(void) {
-	cout << name << ": BraiiiiiiinnnzzzZ...\n";
-}
-
 void	Zombie::setName(string newName) {
-	name = newName;
+	this->_name = newName;
 }
 
-string	Zombie::getName() {
-	return (name);
+string	Zombie::getName() const {
+	return (this->_name);
+}
+
+void	Zombie::annouce(void) const {
+	cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
 }

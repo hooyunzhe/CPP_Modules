@@ -23,18 +23,22 @@ void	Harl::complain(string level) {
 			Harl::warning();
 			Harl::error();
 			break;
+
 		case 1:
 			Harl::info();
 			Harl::warning();
 			Harl::error();
 			break;
+
 		case 2:
 			Harl::warning();
 			Harl::error();
 			break;
+
 		case 3:
 			Harl::error();
 			break;
+			
 		case 4:
 			Harl::not_found();
 			break;

@@ -14,13 +14,11 @@ class	Zombie {
 		~Zombie();
 
 		void	setName(string name);
-		string	getName();
-		void	annouce(void);
-		Zombie	*newZombie(string name);
-		void	randomChump(string name);
+		string	getName() const;
+		void	annouce(void) const;
 
 	private:
-		string	name;
+		string	_name;
 };
 
 Zombie	*zombieHorde(int n, string name);

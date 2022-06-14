@@ -1,8 +1,6 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon(string type) {
-	this->_type = type;
-}
+Weapon::Weapon(string type) : _type(type) {};
 
 Weapon::~Weapon() {}
 

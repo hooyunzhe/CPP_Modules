@@ -3,7 +3,7 @@
 SedPlus::SedPlus() {};
 SedPlus::~SedPlus() {};
 
-int		SedPlus::checkInput(int argc, char **argv) {
+int		SedPlus::checkInput(int argc, char **argv) const {
 	if (argc != 4) {
 		cout << "usage: [filename] [string to find] [string to replace]\n";
 		return (1);
@@ -15,7 +15,7 @@ int		SedPlus::checkInput(int argc, char **argv) {
 	return (0);
 }
 
-void	SedPlus::writePlus(ofstream &output_file, string oriString, string oldString, string newString) {
+void	SedPlus::writePlus(ofstream &output_file, string oriString, string oldString, string newString) const {
 	string	retString;
 	
 	for (size_t i = 0; i < oriString.length(); i++) {
@@ -30,7 +30,7 @@ void	SedPlus::writePlus(ofstream &output_file, string oriString, string oldStrin
 	output_file << endl;
 }
 
-void	SedPlus::sedPlus(string filename, string oldString, string newString) {
+void	SedPlus::sedPlus(string filename, string oldString, string newString) const {
 	string		input;
 	ifstream	input_file(filename);
 	if (!input_file.is_open()) {
