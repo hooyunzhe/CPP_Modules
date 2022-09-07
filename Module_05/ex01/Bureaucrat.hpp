@@ -4,11 +4,14 @@
 # include <iostream>
 # include <string>
 # include "Colours.h"
+# include "Form.hpp"
 
 using std::cout;
 using std::endl;
 using std::string;
 using std::ostream;
+
+class	Form;
 
 class	Bureaucrat {
 	public:
@@ -29,6 +32,8 @@ class	Bureaucrat {
 		int				getGrade(void) const;
 		void			incrementGrade(void);
 		void			decrementGrade(void);
+
+		void			signForm(Form &form_var) const;
 
 	private:
 		const string	_name;
