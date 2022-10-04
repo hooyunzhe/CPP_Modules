@@ -7,7 +7,7 @@ int	main(void) {
 
 		cout << b1;
 	}
-	catch (Bureaucrat::GradeTooHighException & e) {
+	catch (Bureaucrat::GradeTooHighException &e) {
 		cout << e.what();
 	}
 	
@@ -16,7 +16,7 @@ int	main(void) {
 		Bureaucrat b2("b2", 4242);
 		cout << b2;
 	}
-	catch (Bureaucrat::GradeTooLowException & e) {
+	catch (Bureaucrat::GradeTooLowException &e) {
 		cout << e.what();
 	}
 
@@ -29,7 +29,7 @@ int	main(void) {
 			b3.incrementGrade();
 			cout << b3;
 		}
-		catch (Bureaucrat::GradeTooHighException & e) {
+		catch (Bureaucrat::GradeTooHighException &e) {
 			cout << e.what();
 		}
 	}
@@ -43,7 +43,7 @@ int	main(void) {
 			b4.decrementGrade();
 			cout << b4;
 		}
-		catch (Bureaucrat::GradeTooLowException & e) {
+		catch (Bureaucrat::GradeTooLowException &e) {
 			cout << e.what();
 		}
 	}
