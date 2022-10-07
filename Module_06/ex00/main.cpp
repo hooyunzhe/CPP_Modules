@@ -9,5 +9,8 @@ int	main(int argc, char **argv) {
 
 		scalars.checkType();
 		scalars.toChar();
+		scalars.toInt();
+		scalars.toFloat();
+		scalars.toDouble();
 	}
 }
