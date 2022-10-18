@@ -1,6 +1,6 @@
-NAME	= converter
+NAME	= serialization
 
-SRC		= main.cpp Converter.cpp
+SRC		= main.cpp Data.cpp Serialization.cpp
 
 CPP		= c++ -std=c++98
 CFLAGS	= -Wall -Wextra -Werror

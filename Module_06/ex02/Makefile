@@ -1,6 +1,6 @@
-NAME	= converter
+NAME	= identify
 
-SRC		= main.cpp Converter.cpp
+SRC		= main.cpp Base.cpp Identify.cpp
 
 CPP		= c++ -std=c++98
 CFLAGS	= -Wall -Wextra -Werror
