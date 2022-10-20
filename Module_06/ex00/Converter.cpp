@@ -29,7 +29,7 @@ void	Converter::checkType() {
 	else {
 		to_check = this->_literal;
 	}
-	if (this->_literal.length() == 1 && isalpha(this->_literal[0])) {
+	if (this->_literal.length() == 1 && this->_literal[0] >= 32 && this->_literal[0] <= 126 && !isdigit(this->_literal[0])) {
 		this->_type = Char;
 	}
 	else if (to_check.find_first_not_of("0123456789") == string::npos) {
@@ -123,13 +123,13 @@ void	Converter::printChar() {
 		cout << this->_literal;
 	}
 	else if (this->_type == Int) {
-		cout << (char)(std::stoi(this->_literal));
+		cout << static_cast<char>(std::stoi(this->_literal));
 	}
 	else if (this->_type == Float) {
-		cout << (char)(std::stof(this->_literal));
+		cout << static_cast<char>(std::stof(this->_literal));
 	}
 	else if (this->_type == Double) {
-		cout << (char)(std::stod(this->_literal));
+		cout << static_cast<char>(std::stod(this->_literal));
 	}
 	cout << "'" RESET;
 }
@@ -137,16 +137,16 @@ void	Converter::printChar() {
 void	Converter::printInt() {
 	cout << GREEN;
 	if (this->_type == Char) {
-		cout << (int)this->_literal[0];
+		cout << static_cast<int>(this->_literal[0]);
 	}
 	else if (this->_type == Int) {
 		cout << std::stoi(this->_literal);
 	}
 	else if (this->_type == Float) {
-		cout << (int)std::stof(this->_literal);
+		cout << static_cast<int>(std::stof(this->_literal));
 	}
 	else if (this->_type == Double) {
-		cout << (int)std::stod(this->_literal);
+		cout << static_cast<int>(std::stod(this->_literal));
 	}
 	cout << RESET;
 }
@@ -155,16 +155,16 @@ void	Converter::printFloat() {
 	cout << GREEN;
 	cout << std::fixed << std::setprecision(1);
 	if (this->_type == Char) {
-		cout << (float)this->_literal[0];
+		cout << static_cast<float>(this->_literal[0]);
 	}
 	else if (this->_type == Int) {
-		cout << (float)std::stoi(this->_literal);
+		cout << static_cast<float>(std::stoi(this->_literal));
 	}
 	else if (this->_type == Float) {
 		cout << std::stof(this->_literal);
 	}
 	else if (this->_type == Double) {
-		cout << (float)std::stod(this->_literal);
+		cout << static_cast<float>(std::stod(this->_literal));
 	}
 	cout << "f" RESET;
 }
@@ -173,13 +173,13 @@ void	Converter::printDouble() {
 	cout << GREEN;
 	cout << std::fixed << std::setprecision(1);
 	if (this->_type == Char) {
-		cout << (double)this->_literal[0];
+		cout << static_cast<double>(this->_literal[0]);
 	}
 	else if (this->_type == Int) {
-		cout << (double)std::stoi(this->_literal);
+		cout << static_cast<double>(std::stoi(this->_literal));
 	}
 	else if (this->_type == Float) {
-		cout << (double)std::stof(this->_literal);
+		cout << static_cast<double>(std::stof(this->_literal));
 	}
 	else if (this->_type == Double) {
 		cout << std::stod(this->_literal);
