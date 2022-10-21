@@ -32,7 +32,9 @@ AForm	*Intern::makeForm(string form, string target) {
 	form_to_check.erase(std::remove(form_to_check.begin(), form_to_check.end(), '-'), form_to_check.end());
 	form_to_check.erase(std::remove(form_to_check.begin(), form_to_check.end(), '_'), form_to_check.end());
 
-	std::transform(form_to_check.begin(), form_to_check.end(), form_to_check.begin(), ::tolower);
+	for (int i = 0; i < static_cast<int>(form_to_check.length()); i++) {
+		form_to_check[i] = tolower(form_to_check[i]);
+	}
 
 	for (int i = 0; i < 3; i++) {
 		if (form_to_check == form_names[i] || form_to_check == form_names[i] + "form") {
