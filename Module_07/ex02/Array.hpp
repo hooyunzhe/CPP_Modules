@@ -11,7 +11,8 @@ using std::endl;
 using std::string;
 using std::ostream;
 
-template <typename T> class	Array {
+template <class T>
+class	Array {
 	public:
 		class	IndexOutOfRange : public std::exception {
 			public:

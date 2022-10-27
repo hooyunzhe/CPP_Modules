@@ -153,7 +153,6 @@ void	Converter::printInt() {
 
 void	Converter::printFloat() {
 	cout << GREEN;
-	cout << std::fixed << std::setprecision(1);
 	if (this->_type == Char) {
 		cout << static_cast<float>(this->_literal[0]);
 	}
@@ -171,7 +170,6 @@ void	Converter::printFloat() {
 
 void	Converter::printDouble() {
 	cout << GREEN;
-	cout << std::fixed << std::setprecision(1);
 	if (this->_type == Char) {
 		cout << static_cast<double>(this->_literal[0]);
 	}
