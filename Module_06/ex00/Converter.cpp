@@ -22,8 +22,9 @@ Converter	&Converter::operator = (const Converter &converter_var) {
 
 void	Converter::checkType() {
 	string	to_check;
+	char	*end;
 
-	if ((this->_literal[0] == '-' || this->_literal[0] == '+') && isdigit(this->_literal[1])) {
+	if ((this->_literal[0] == '-' || this->_literal[0] == '+') && (isdigit(this->_literal[1]) || this->_literal[1] == 'i')) {
 		to_check = this->_literal.substr(1, string::npos);
 	}
 	else {
@@ -51,35 +52,19 @@ void	Converter::checkType() {
 	else {
 		this->_type = Invalid;
 	}
-	try {
-		if (this->_type == Int) {
-			std::stoi(this->_literal);
-		}
-		else if (this->_type == Float) {
-			std::stof(this->_literal);
-		}
-		else if (this->_type == Double) {
-			std::stod(this->_literal);
-		}
-	}
-	catch (std::out_of_range &e) {
-		this->_type = Invalid;
+	if (this->_type == Int && (std::strtod(this->_literal.c_str(), &end) < INT_MIN || std::strtod(this->_literal.c_str(), &end) > INT_MAX)) {
+		this->_type = Double;
 	}
 }
 
 bool	Converter::checkOutOfRange(scalar type) {
-	try {
-		if ((this->_type == Float || this->_type == Double) && type == Int) {
-			std::stoi(this->_literal);
-		}
-		else if (this->_type == Double && type == Float) {
-			std::stof(this->_literal);
-		}
-		return (false);
-	}
-	catch (std::out_of_range &e) {
+	char	*end;
+
+	if ((type == Char && (std::strtod(this->_literal.c_str(), &end) < 0 || std::strtod(this->_literal.c_str(), &end) > 127)) ||
+		(type == Int && (std::strtod(this->_literal.c_str(), &end) < INT_MIN || std::strtod(this->_literal.c_str(), &end) > INT_MAX))) {
 		return (true);
 	}
+	return (false);
 }
 
 bool	Converter::checkPseudo() {
@@ -88,17 +73,19 @@ bool	Converter::checkPseudo() {
 }
 
 bool	Converter::checkDisplayable() {
+	char	*end;
+
 	if (this->_type == Char) {
 		return (this->_literal[0] >= ' ' && this->_literal[0] <= '~');
 	}
 	else if (this->_type == Int) {
-		return (std::stoi(this->_literal) >= 32 && std::stoi(this->_literal) <= 126);
+		return (std::atoi(this->_literal.c_str()) >= 32 && std::atoi(this->_literal.c_str()) <= 126);
 	}
 	else if (this->_type == Float) {
-		return (std::stof(this->_literal) >= 32.0f && std::stof(this->_literal) <= 126.0f);
+		return (std::atof(this->_literal.c_str()) >= 32.0f && std::atof(this->_literal.c_str()) <= 126.0f);
 	}
 	else if (this->_type == Double) {
-		return (std::stod(this->_literal) >= 32.0 && std::stod(this->_literal) <= 126.0);
+		return (std::strtod(this->_literal.c_str(), &end) >= 32.0 && std::strtod(this->_literal.c_str(), &end) <= 126.0);
 	}
 	return (false);
 }
@@ -106,81 +93,95 @@ bool	Converter::checkDisplayable() {
 void	Converter::printPseudo(scalar type) {
 	cout << GREEN;
 	if (this->_type == Float && type == Double) {
-		cout << this->_literal.substr(0, this->_literal.size() - 1);
+		cout << this->_literal.substr((this->_literal[0] == '+'), this->_literal.length() - 1 - (this->_literal[0] == '+'));
 	}
 	else if (this->_type == Double && type == Float) {
-		cout << this->_literal << "f";
+		cout << this->_literal.substr((this->_literal[0] == '+'), this->_literal.length()) << "f";
 	}
 	else {
-		cout << this->_literal;
+		cout << this->_literal.substr((this->_literal[0] == '+'), this->_literal.length());
 	}
 	cout << RESET;
 }
 
 void	Converter::printChar() {
+	char	*end;
+
 	cout << GREEN "'";
 	if (this->_type == Char) {
 		cout << this->_literal;
 	}
 	else if (this->_type == Int) {
-		cout << static_cast<char>(std::stoi(this->_literal));
+		cout << static_cast<char>(std::atoi(this->_literal.c_str()));
 	}
 	else if (this->_type == Float) {
-		cout << static_cast<char>(std::stof(this->_literal));
+		cout << static_cast<char>(std::atof(this->_literal.c_str()));
 	}
 	else if (this->_type == Double) {
-		cout << static_cast<char>(std::stod(this->_literal));
+		cout << static_cast<char>(std::strtod(this->_literal.c_str(), &end));
 	}
 	cout << "'" RESET;
 }
 
 void	Converter::printInt() {
+	char	*end;
+
 	cout << GREEN;
 	if (this->_type == Char) {
 		cout << static_cast<int>(this->_literal[0]);
 	}
 	else if (this->_type == Int) {
-		cout << std::stoi(this->_literal);
+		cout << std::atoi(this->_literal.c_str());
 	}
 	else if (this->_type == Float) {
-		cout << static_cast<int>(std::stof(this->_literal));
+		cout << static_cast<int>(std::strtod(this->_literal.c_str(), &end));
 	}
 	else if (this->_type == Double) {
-		cout << static_cast<int>(std::stod(this->_literal));
+		cout << static_cast<int>(std::strtod(this->_literal.c_str(), &end));
 	}
 	cout << RESET;
 }
 
 void	Converter::printFloat() {
+	char	*end;
+
 	cout << GREEN;
 	if (this->_type == Char) {
 		cout << static_cast<float>(this->_literal[0]);
 	}
 	else if (this->_type == Int) {
-		cout << static_cast<float>(std::stoi(this->_literal));
+		cout << static_cast<float>(std::atoi(this->_literal.c_str()));
 	}
 	else if (this->_type == Float) {
-		cout << std::stof(this->_literal);
+		cout << std::atof(this->_literal.c_str());
 	}
 	else if (this->_type == Double) {
-		cout << static_cast<float>(std::stod(this->_literal));
+		cout << static_cast<float>(std::strtod(this->_literal.c_str(), &end));
+	}
+	if (this->_literal.length() <= 6 + (!isdigit(this->_literal[0])) && floor(std::atof(this->_literal.c_str())) == std::atof(this->_literal.c_str())) {
+		cout << ".0";
 	}
 	cout << "f" RESET;
 }
 
 void	Converter::printDouble() {
+	char	*end;
+
 	cout << GREEN;
 	if (this->_type == Char) {
 		cout << static_cast<double>(this->_literal[0]);
 	}
 	else if (this->_type == Int) {
-		cout << static_cast<double>(std::stoi(this->_literal));
+		cout << static_cast<double>(std::atoi(this->_literal.c_str()));
 	}
 	else if (this->_type == Float) {
-		cout << static_cast<double>(std::stof(this->_literal));
+		cout << static_cast<double>(std::strtod(this->_literal.c_str(), &end));
 	}
 	else if (this->_type == Double) {
-		cout << std::stod(this->_literal);
+		cout << std::strtod(this->_literal.c_str(), &end);
+	}
+	if (this->_literal.length() <= 6 + (!isdigit(this->_literal[0])) && floor(std::strtod(this->_literal.c_str(), &end)) == std::strtod(this->_literal.c_str(), &end)) {
+		cout << ".0";
 	}
 	cout << RESET;
 }
@@ -190,7 +191,7 @@ void	Converter::toChar() {
 	if (this->_type == Invalid) {
 		cout << BLACK "Invalid" RESET;
 	}
-	else if (this->checkPseudo()) {
+	else if (this->checkPseudo() || this->checkOutOfRange(Char)) {
 		cout << RED "Impossible" RESET;
 	}
 	else if (this->checkDisplayable()) {
@@ -223,9 +224,6 @@ void	Converter::toFloat() {
 	}
 	else if (this->checkPseudo()) {
 		this->printPseudo(Float);
-	}
-	else if (this->checkOutOfRange(Float)) {
-		cout << RED "Impossible" RESET;
 	}
 	else {
 		this->printFloat();

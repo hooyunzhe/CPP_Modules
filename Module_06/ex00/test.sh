@@ -25,8 +25,12 @@ echo ${MAGENTA}"\ninput: \"-4\""${RESET}
 ./converter "-4";
 echo ${MAGENTA}"\ninput: \"+4\""${RESET}
 ./converter "+4";
+echo ${MAGENTA}"\ninput: \"2147483647\""${RESET}
+./converter "2147483647"
 echo ${MAGENTA}"\ninput: \"2147483648\""${RESET}
 ./converter "2147483648"
+echo ${MAGENTA}"\ninput: \"-424242424242\""${RESET}
+./converter "-424242424242"
 
 echo ${CYAN}"\n========================"
 echo "Testing float conversions"
@@ -42,6 +46,14 @@ echo ${MAGENTA}"\ninput: \"3.0f\""${RESET}
 ./converter "3.0f"
 echo ${MAGENTA}"\ninput: \"3.f\""${RESET}
 ./converter "3.f"
+echo ${MAGENTA}"\ninput: \"1.23456\""${RESET}
+./converter "1.23456"
+echo ${MAGENTA}"\ninput: \"2147483647.0f\""${RESET}
+./converter "2147483647.0f"
+echo ${MAGENTA}"\ninput: \"2147483648.0f\""${RESET}
+./converter "2147483648.0f"
+echo ${MAGENTA}"\ninput: \"-424242424242.0f\""${RESET}
+./converter "-424242424242.0f"
 echo ${MAGENTA}"\ninput: \"-inff\""${RESET}
 ./converter "-inff"
 echo ${MAGENTA}"\ninput: \"+inff\""${RESET}
@@ -63,6 +75,14 @@ echo ${MAGENTA}"\ninput: \"0.0\""${RESET}
 ./converter "0.0"
 echo ${MAGENTA}"\ninput: \"0.\""${RESET}
 ./converter "0."
+echo ${MAGENTA}"\ninput: \"1.23456\""${RESET}
+./converter "1.23456"
+echo ${MAGENTA}"\ninput: \"2147483647.0\""${RESET}
+./converter "2147483647.0"
+echo ${MAGENTA}"\ninput: \"2147483648.0\""${RESET}
+./converter "2147483648.0"
+echo ${MAGENTA}"\ninput: \"-424242424242.0\""${RESET}
+./converter "-424242424242.0"
 echo ${MAGENTA}"\ninput: \"-inf\""${RESET}
 ./converter "-inf"
 echo ${MAGENTA}"\ninput: \"+inf\""${RESET}

@@ -21,10 +21,10 @@ class	Converter {
 		Converter	&operator = (const Converter &converter_var);
 
 		void	checkType();
-		bool	checkOutOfRange(scalar);
+		bool	checkOutOfRange(scalar type);
 		bool	checkPseudo();
 		bool	checkDisplayable();
-		void	printPseudo(scalar);
+		void	printPseudo(scalar type);
 		void	printChar();
 		void	printInt();
 		void	printFloat();

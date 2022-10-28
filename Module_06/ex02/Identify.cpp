@@ -31,13 +31,19 @@ void	identify(Base *p) {
 
 void	identify(Base &p) {
 	cout << YELLOW "The argument references an instance of Base class " RESET;
-	if (dynamic_cast<A*>(&p)) {
+	try {
+		(void)dynamic_cast<A&>(p);
 		cout << GREEN "A\n" RESET;
 	}
-	else if (dynamic_cast<B*>(&p)) {
+	catch (std::bad_cast &e) {}
+	try {
+		(void)dynamic_cast<B&>(p);
 		cout << GREEN "B\n" RESET;
 	}
-	else if (dynamic_cast<C*>(&p)) {
+	catch (std::bad_cast &e) {}
+	try {
+		(void)dynamic_cast<C&>(p);
 		cout << GREEN "C\n" RESET;
 	}
+	catch (std::bad_cast &e) {}
 }
