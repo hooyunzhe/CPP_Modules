@@ -88,6 +88,9 @@ int	Span::shortestSpan(void) const {
 }
 
 int	Span::longestSpan(void) const {
+	if (this->_index < 2) {
+		throw SpanTooSmall();
+	}
 	return (*std::max_element(this->_arr, this->_arr + this->_index) - *std::min_element(this->_arr, this->_arr + this->_index));
 }
 

@@ -14,6 +14,7 @@ int	main(void) {
     // Int Array
     Array<int>  int_arr(5);
 
+    cout << int_arr;
     for (int i = 0; i < int_arr.size(); i++) {
         int_arr[i] = i;
     }

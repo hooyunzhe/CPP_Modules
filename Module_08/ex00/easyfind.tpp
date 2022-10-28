@@ -3,14 +3,14 @@
 
 # include "easyfind.hpp"
 
-template <typename T>
-int easyfind(T container, int to_find) {
-    for (int i = 0; i < static_cast<int>(container.size()); i++) {
-        if (container[i] == to_find) {
-            return (i);
-        }
+template <class T>
+int easyfind(T &container, int to_find) {
+    if (std::find(container.begin(), container.end(), to_find) == container.end()) {
+        cout << "Error: not found...\n";
+        return (-1);
     }
-    return (-1);
+    cout << to_find << " found at index " << std::distance(container.begin(), std::find(container.begin(), container.end(), to_find)) << endl;
+    return (to_find);
 }
 
 #endif
