@@ -8,10 +8,10 @@
 - **Module 01: 100/100**
 - **Module 02: 100/100**
 - **Module 03: 100/100**
-- **Module 04: TBD/100**
-- **Module 05: TBD/100**
-- **Module 06: TBD/100**
-- **Module 07: TBD/100**
-- **Module 08: TBD/100**
+- **Module 04: 100/100**
+- **Module 05: 100/100**
+- **Module 06: 100/100**
+- **Module 07: 100/100**
+- **Module 08: 100/100**
 
 In this project, I'll complete exercises to learn about C++
